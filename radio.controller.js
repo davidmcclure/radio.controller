@@ -9,6 +9,7 @@
 
 var _ = require('underscore');
 var Backbone = require('backbone');
+var Radio = require('backbone.radio');
 
 
 /**
@@ -35,24 +36,8 @@ Controller.extend = Backbone.Model.extend;
 
 
 /**
- * Bind callback mappings in the `radio` attribute.
+ * Create radio channels, bind callbacks.
  */
 Controller.prototype._listen = function() {
-
-  _.each(this.radio, function(channel, mappings) {
-
-    if (mappings.events) {
-      // TODO
-    }
-
-    if (mappings.commands) {
-      // TODO
-    }
-
-    if (mappings.requests) {
-      // TODO
-    }
-
-  });
-
+  // TODO
 };
