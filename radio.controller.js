@@ -8,6 +8,7 @@
 
 
 var _ = require('underscore');
+var Backbone = require('backbone');
 
 
 /**
@@ -27,6 +28,10 @@ var Controller = module.exports = function(options) {
   this._listen();
 
 };
+
+
+// Borrow Backbone's `extend` pattern.
+Controller.extend = Backbone.Model.extend;
 
 
 /**
