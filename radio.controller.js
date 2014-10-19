@@ -26,7 +26,7 @@ var Controller = module.exports = function(options) {
     this.initialize(this.options);
   }
 
-  this._listen();
+  this._tune();
 
 };
 
@@ -38,54 +38,42 @@ Controller.extend = Backbone.Model.extend;
 /**
  * Create radio channels, bind callbacks.
  */
-Controller.prototype._listen = function() {
-
-  // create each channel
-  // bind events/commands/requests
+Controller.prototype._tune = function() {
 
   var self = this;
 
   _.each(this.radio, function(bindings, name) {
-
-    // Register the channel.
     var channel = Radio.channel(name);
-
-    // Bind events.
-    self._bind(bindings.events, function(event, method) {
-      channel.on(event, _.bind(self[method], self));
-    });
-
+    self._bind(bindings.events, channel.on);
   });
 
 };
 
 
 /**
- * Bind a set of event mappings onto controller callbacks.
+ * Bind a set of event definitions onto callbacks.
  *
- * - If the identifier is a string, bind the event directly to the method
- *   on the controller with the same name.
- *
- * - If the identifier is an object, treat the keys as event names and the
- *   values as the corresponding controller methods.
- *
- * @param {Array} map: An array of strings/objects.
- * @param {Function} bind: A binding method.
+ * @param {Array} definitions: An array of strings/objects.
+ * @param {Function} bind: A radio binding method.
  */
-Controller.prototype._bind = function(map, bind) {
-  _.each(map, function(identifier) {
+Controller.prototype._bind = function(definitions, bind) {
+
+  var self = this;
+
+  _.each(definitions, function(def) {
 
     // If string, bind to method with same name.
-    if (_.isString(identifier)) {
-      bind(identifier, identifier);
+    if (_.isString(def)) {
+      bind(def, _.bind(self[def], self));
     }
 
-    // If object, bind each event-callback pair.
-    else if (_.isObject(identifier)) {
-      _.each(identifier, function(v, k) {
-        bind(k, v)
+    // If object, bind each event-method pair.
+    else if (_.isObject(def)) {
+      _.each(def, function(method, event) {
+        bind(event, _.bind(self[method], self))
       });
     }
 
   });
+
 };
