@@ -17,7 +17,7 @@ var Radio = require('backbone.radio');
  *
  * @param {Object} options
  */
-var Controller = module.exports = function(options) {
+var Controller = function(options) {
 
   this.options = options || {};
 
@@ -77,3 +77,6 @@ Controller.prototype._bind = function(definitions, bind) {
   });
 
 };
+
+
+module.exports = Controller;
