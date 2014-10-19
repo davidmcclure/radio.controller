@@ -46,33 +46,33 @@ describe('Events', function() {
 
   });
 
-  //it('mixed array of strings and objects', function() {
+  it('mixed array of strings and objects', function() {
 
-    //Ctl = Controller.extend({
+    Ctl = Controller.extend({
 
-      //radio: {
-        //ch1: {
-          //events: [
-            //'evt1',
-            //{ evt2: 'evt2a'}
-          //]
-        //},
-        //ch2: {
-          //events: [
-            //'evt3',
-            //{ evt4: 'evt4a'}
-          //]
-        //}
-      //},
+      radio: {
+        ch1: {
+          events: [
+            'evt1',
+            { evt2: 'evt2a'}
+          ]
+        },
+        ch2: {
+          events: [
+            'evt3',
+            { evt4: 'evt4a'}
+          ]
+        }
+      },
 
-      //evt1:   spy1,
-      //evt2a:  spy2,
-      //evt3:   spy3,
-      //evt4a:  spy4
+      evt1:   spy1,
+      evt2a:  spy2,
+      evt3:   spy3,
+      evt4a:  spy4
 
-    //});
+    });
 
-  //});
+  });
 
   afterEach(function() {
 

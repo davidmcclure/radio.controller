@@ -31,7 +31,7 @@ var Controller = function(options) {
 };
 
 
-// Borrow Backbone's `extend` pattern.
+// Patch in Backbone's `extend`.
 Controller.extend = Backbone.Model.extend;
 
 
@@ -53,14 +53,14 @@ Controller.prototype._tune = function() {
 /**
  * Bind a set of event definitions onto callbacks.
  *
- * @param {Array} definitions: An array of strings/objects.
+ * @param {Array} map: An array of event mappings.
  * @param {Function} bind: A radio binding method.
  */
-Controller.prototype._bind = function(definitions, bind) {
+Controller.prototype._bind = function(map, bind) {
 
   var self = this;
 
-  _.each(definitions, function(def) {
+  _.each(map, function(def) {
 
     // If string, bind to method with same name.
     if (_.isString(def)) {
