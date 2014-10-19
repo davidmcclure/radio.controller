@@ -33,5 +33,21 @@ var Controller = module.exports = function(options) {
  * Bind callback mappings in the `radio` attribute.
  */
 Controller.prototype._listen = function() {
-  console.log(_);
+
+  _.each(this.radio, function(channel, mappings) {
+
+    if (mappings.events) {
+      // TODO
+    }
+
+    if (mappings.commands) {
+      // TODO
+    }
+
+    if (mappings.requests) {
+      // TODO
+    }
+
+  });
+
 };
