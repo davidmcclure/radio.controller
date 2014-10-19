@@ -44,7 +44,9 @@ Controller.prototype._tune = function() {
 
   _.each(this.radio, function(bindings, name) {
     var channel = Radio.channel(name);
-    self._bind(bindings.events, channel.on);
+    self._bind(bindings.events, function(event, method) {
+      channel.on(event, _.bind(self[method], self));
+    });
   });
 
 };
@@ -64,13 +66,13 @@ Controller.prototype._bind = function(map, bind) {
 
     // If string, bind to method with same name.
     if (_.isString(def)) {
-      bind(def, _.bind(self[def], self));
+      bind(def, def);
     }
 
     // If object, bind each event-method pair.
     else if (_.isObject(def)) {
       _.each(def, function(method, event) {
-        bind(event, _.bind(self[method], self))
+        bind(event, method)
       });
     }
 
