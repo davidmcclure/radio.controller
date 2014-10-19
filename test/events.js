@@ -9,15 +9,42 @@ var expect = chai.expect;
 
 describe('Events', function() {
 
-  // TODO|dev
-  it('should', function() {
+  var Ctl, spy1, spy2, spy3, spy4;
 
-    var spy1 = sinon.spy();
-    var spy2 = sinon.spy();
-    var spy3 = sinon.spy();
-    var spy4 = sinon.spy();
+  beforeEach(function() {
+    spy1 = sinon.spy();
+    spy2 = sinon.spy();
+    spy3 = sinon.spy();
+    spy4 = sinon.spy();
+  });
 
-    var Ctl = Controller.extend({
+  afterEach(function() {
+
+    new Ctl();
+
+    var ch1 = Radio.channel('ch1');
+    var ch2 = Radio.channel('ch2');
+
+    ch1.trigger('evt1', 1);
+    ch1.trigger('evt2', 2);
+    ch2.trigger('evt3', 3);
+    ch2.trigger('evt4', 4);
+
+    expect(spy1).to.have.been.calledOnce;
+    expect(spy2).to.have.been.calledOnce;
+    expect(spy3).to.have.been.calledOnce;
+    expect(spy4).to.have.been.calledOnce;
+
+    expect(spy1).to.have.been.calledWithExactly(1);
+    expect(spy2).to.have.been.calledWithExactly(2);
+    expect(spy3).to.have.been.calledWithExactly(3);
+    expect(spy4).to.have.been.calledWithExactly(4);
+
+  });
+
+  it('array of strings', function() {
+
+    Ctl = Controller.extend({
 
       radio: {
         ch1: {
@@ -41,27 +68,33 @@ describe('Events', function() {
 
     });
 
-    new Ctl();
+  });
 
-    var ch1 = Radio.channel('ch1');
-    var ch2 = Radio.channel('ch2');
-    var ch3 = Radio.channel('ch3');
-    var ch4 = Radio.channel('ch4');
+  it('mixed array of strings and objects', function() {
 
-    ch1.trigger('evt1', 1);
-    ch2.trigger('evt2', 2);
-    ch3.trigger('evt3', 3);
-    ch4.trigger('evt4', 4);
+    Ctl = Controller.extend({
 
-    expect(spy1).to.have.been.calledOnce;
-    expect(spy2).to.have.been.calledOnce;
-    expect(spy3).to.have.been.calledOnce;
-    expect(spy4).to.have.been.calledOnce;
+      radio: {
+        ch1: {
+          events: [
+            'evt1',
+            { evt2: 'evt2a'}
+          ]
+        },
+        ch2: {
+          events: [
+            'evt3',
+            { evt4: 'evt4a'}
+          ]
+        }
+      },
 
-    expect(spy1).to.have.been.calledWithExactly(1);
-    expect(spy2).to.have.been.calledWithExactly(2);
-    expect(spy3).to.have.been.calledWithExactly(3);
-    expect(spy4).to.have.been.calledWithExactly(4);
+      evt1:   spy1,
+      evt2a:  spy2,
+      evt3:   spy3,
+      evt4a:  spy4
+
+    });
 
   });
 
