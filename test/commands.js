@@ -22,25 +22,15 @@ describe('Commands', function() {
 
     Ctl = Controller.extend({
 
-      radio: {
-        ch1: {
-          commands: {
-            cmd1: 'cmd1',
-            cmd2: 'cmd2'
-          }
-        },
-        ch2: {
-          commands: {
-            cmd3: 'cmd3',
-            cmd4: 'cmd4'
-          }
-        }
+      channel: 'chn',
+
+      commands: {
+        cmd1: 'cmd1',
+        cmd2: 'cmd2'
       },
 
       cmd1: spy1,
-      cmd2: spy2,
-      cmd3: spy3,
-      cmd4: spy4
+      cmd2: spy2
 
     });
 
@@ -50,23 +40,16 @@ describe('Commands', function() {
 
     new Ctl();
 
-    var ch1 = Radio.channel('ch1');
-    var ch2 = Radio.channel('ch2');
+    var chn = Radio.channel('chn');
 
-    ch1.command('cmd1', 1);
-    ch1.command('cmd2', 2);
-    ch2.command('cmd3', 3);
-    ch2.command('cmd4', 4);
+    chn.command('cmd1', 1);
+    chn.command('cmd2', 2);
 
     expect(spy1).to.have.been.calledWithExactly(1);
     expect(spy2).to.have.been.calledWithExactly(2);
-    expect(spy3).to.have.been.calledWithExactly(3);
-    expect(spy4).to.have.been.calledWithExactly(4);
 
     expect(spy1).to.have.been.calledOnce;
     expect(spy2).to.have.been.calledOnce;
-    expect(spy3).to.have.been.calledOnce;
-    expect(spy4).to.have.been.calledOnce;
 
   });
 

@@ -21,7 +21,6 @@ var Controller = function(options) {
 
   this.options = options || {};
 
-  // Call userland initializer.
   if (_.isFunction(this.initialize)) {
     this.initialize(this.options);
   }
@@ -42,43 +41,34 @@ Controller.prototype._tune = function() {
 
   var self = this;
 
-  _.each(this.radio, function(bindings, name) {
-
+  // EVENTS
+  _.each(this.events, function(map, name) {
     var channel = Radio.channel(name);
-
-    // EVENTS
-    self._bind(bindings.events, function(e, m) {
-      channel.on(e, _.bind(self[m], self));
+    _.each(map, function(method, event) {
+      channel.on(event, self[method], self);
     });
+  });
+
+  if (_.isObject(this.commands) ||
+      _.isObject(this.requests)) {
+
+    if (!_.isString(this.channel)) {
+      throw new Error('You must provide a local channel name.');
+    }
+
+    this.channel = Radio.channel(this.channel);
 
     // COMMANDS
-    self._bind(bindings.commands, function(e, m) {
-      channel.comply(e, _.bind(self[m], self));
+    _.each(this.commands, function(method, command) {
+      self.channel.comply(command, self[method], self);
     });
 
     // REQUESTS
-    self._bind(bindings.requests, function(e, m) {
-      channel.reply(e, _.bind(self[m], self));
+    _.each(this.requests, function(method, request) {
+      self.channel.reply(request, self[request], self);
     });
 
-  });
-
-};
-
-
-/**
- * Bind a set of event definitions onto callbacks.
- *
- * @param {Array} map: An array of event mappings.
- * @param {Function} bind: A radio binding method.
- */
-Controller.prototype._bind = function(map, bind) {
-
-  var self = this;
-
-  _.each(map, function(method, event) {
-    bind(event, method)
-  });
+  }
 
 };
 

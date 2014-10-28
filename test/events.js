@@ -22,18 +22,14 @@ describe('Events', function() {
 
     Ctl = Controller.extend({
 
-      radio: {
+      events: {
         ch1: {
-          events: {
-            evt1: 'evt1',
-            evt2: 'evt2'
-          }
+          evt1: 'evt1',
+          evt2: 'evt2'
         },
         ch2: {
-          events: {
-            evt3: 'evt3',
-            evt4: 'evt4'
-          }
+          evt3: 'evt3',
+          evt4: 'evt4'
         }
       },
 
