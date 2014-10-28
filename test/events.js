@@ -18,22 +18,22 @@ describe('Events', function() {
     spy4 = sinon.spy();
   });
 
-  it('array of strings', function() {
+  it('object', function() {
 
     Ctl = Controller.extend({
 
       radio: {
         ch1: {
-          events: [
-            'evt1',
-            'evt2'
-          ]
+          events: {
+            evt1: 'evt1',
+            evt2: 'evt2'
+          }
         },
         ch2: {
-          events: [
-            'evt3',
-            'evt4'
-          ]
+          events: {
+            evt3: 'evt3',
+            evt4: 'evt4'
+          }
         }
       },
 
@@ -41,34 +41,6 @@ describe('Events', function() {
       evt2: spy2,
       evt3: spy3,
       evt4: spy4
-
-    });
-
-  });
-
-  it('mixed array of strings and objects', function() {
-
-    Ctl = Controller.extend({
-
-      radio: {
-        ch1: {
-          events: [
-            'evt1',
-            { evt2: 'evt2a'}
-          ]
-        },
-        ch2: {
-          events: [
-            'evt3',
-            { evt4: 'evt4a'}
-          ]
-        }
-      },
-
-      evt1:   spy1,
-      evt2a:  spy2,
-      evt3:   spy3,
-      evt4a:  spy4
 
     });
 

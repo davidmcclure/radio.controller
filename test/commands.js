@@ -18,22 +18,22 @@ describe('Commands', function() {
     spy4 = sinon.spy();
   });
 
-  it('array of strings', function() {
+  it('object', function() {
 
     Ctl = Controller.extend({
 
       radio: {
         ch1: {
-          commands: [
-            'cmd1',
-            'cmd2'
-          ]
+          commands: {
+            cmd1: 'cmd1',
+            cmd2: 'cmd2'
+          }
         },
         ch2: {
-          commands: [
-            'cmd3',
-            'cmd4'
-          ]
+          commands: {
+            cmd3: 'cmd3',
+            cmd4: 'cmd4'
+          }
         }
       },
 
@@ -41,34 +41,6 @@ describe('Commands', function() {
       cmd2: spy2,
       cmd3: spy3,
       cmd4: spy4
-
-    });
-
-  });
-
-  it('mixed array of strings and objects', function() {
-
-    Ctl = Controller.extend({
-
-      radio: {
-        ch1: {
-          commands: [
-            'cmd1',
-            { cmd2: 'cmd2a'}
-          ]
-        },
-        ch2: {
-          commands: [
-            'cmd3',
-            { cmd4: 'cmd4a'}
-          ]
-        }
-      },
-
-      cmd1:   spy1,
-      cmd2a:  spy2,
-      cmd3:   spy3,
-      cmd4a:  spy4
 
     });
 

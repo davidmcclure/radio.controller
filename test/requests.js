@@ -24,16 +24,16 @@ describe('Requests', function() {
 
       radio: {
         ch1: {
-          requests: [
-            'req1',
-            'req2'
-          ]
+          requests: {
+            req1: 'req1',
+            req2: 'req2'
+          }
         },
         ch2: {
-          requests: [
-            'req3',
-            'req4'
-          ]
+          requests: {
+            req3: 'req3',
+            req4: 'req4'
+          }
         }
       },
 
@@ -41,34 +41,6 @@ describe('Requests', function() {
       req2: spy2,
       req3: spy3,
       req4: spy4
-
-    });
-
-  });
-
-  it('mixed array of strings and objects', function() {
-
-    Ctl = Controller.extend({
-
-      radio: {
-        ch1: {
-          requests: [
-            'req1',
-            { req2: 'req2a'}
-          ]
-        },
-        ch2: {
-          requests: [
-            'req3',
-            { req4: 'req4a'}
-          ]
-        }
-      },
-
-      req1:   spy1,
-      req2a:  spy2,
-      req3:   spy3,
-      req4a:  spy4
 
     });
 

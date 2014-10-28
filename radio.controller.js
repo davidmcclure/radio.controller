@@ -76,18 +76,8 @@ Controller.prototype._bind = function(map, bind) {
 
   var self = this;
 
-  _.each(map, function(def) {
-
-    // If string, bind to method with same name.
-    if (_.isString(def)) bind(def, def);
-
-    // If object, bind each event-method pair.
-    else if (_.isObject(def)) {
-      _.each(def, function(method, event) {
-        bind(event, method)
-      });
-    }
-
+  _.each(map, function(method, event) {
+    bind(event, method)
   });
 
 };
