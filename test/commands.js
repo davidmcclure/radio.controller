@@ -9,20 +9,18 @@ var expect = chai.expect;
 
 describe('Commands', function() {
 
-  var Ctl, spy1, spy2, spy3, spy4;
+  var Ctl, spy1, spy2;
 
   beforeEach(function() {
     spy1 = sinon.spy();
     spy2 = sinon.spy();
-    spy3 = sinon.spy();
-    spy4 = sinon.spy();
   });
 
-  it('object', function() {
+  it('should bind commands to callbacks', function() {
 
     Ctl = Controller.extend({
 
-      channel: 'chn',
+      channel: 'ch1',
 
       commands: {
         cmd1: 'cmd1',
@@ -34,20 +32,15 @@ describe('Commands', function() {
 
     });
 
-  });
-
-  afterEach(function() {
-
     new Ctl();
 
-    var chn = Radio.channel('chn');
+    var ch1 = Radio.channel('ch1');
 
-    chn.command('cmd1', 1);
-    chn.command('cmd2', 2);
+    ch1.command('cmd1', 1);
+    ch1.command('cmd2', 2);
 
     expect(spy1).to.have.been.calledWithExactly(1);
     expect(spy2).to.have.been.calledWithExactly(2);
-
     expect(spy1).to.have.been.calledOnce;
     expect(spy2).to.have.been.calledOnce;
 

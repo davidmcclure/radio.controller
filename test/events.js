@@ -18,7 +18,7 @@ describe('Events', function() {
     spy4 = sinon.spy();
   });
 
-  it('object', function() {
+  it('should bind events to callbacks', function() {
 
     Ctl = Controller.extend({
 
@@ -40,10 +40,6 @@ describe('Events', function() {
 
     });
 
-  });
-
-  afterEach(function() {
-
     new Ctl();
 
     var ch1 = Radio.channel('ch1');
@@ -58,7 +54,6 @@ describe('Events', function() {
     expect(spy2).to.have.been.calledWithExactly(2);
     expect(spy3).to.have.been.calledWithExactly(3);
     expect(spy4).to.have.been.calledWithExactly(4);
-
     expect(spy1).to.have.been.calledOnce;
     expect(spy2).to.have.been.calledOnce;
     expect(spy3).to.have.been.calledOnce;
