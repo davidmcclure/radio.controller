@@ -21,6 +21,7 @@ var Controller = function(options) {
 
   this.options = options || {};
 
+  // Call userland initializer.
   if (_.isFunction(this.initialize)) {
     this.initialize(this.options);
   }
@@ -52,6 +53,7 @@ Controller.prototype._tune = function() {
   if (_.isObject(this.commands) ||
       _.isObject(this.requests)) {
 
+    // Break if no local channel.
     if (!_.isString(this.channel)) {
       throw new Error('You must provide a local channel name.');
     }
