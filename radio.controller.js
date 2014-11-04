@@ -59,6 +59,8 @@ Controller.prototype._bindEvents = function() {
 
     // Backbone event style.
     else if (_.isString(map)) {
+
+      // Match `<channel> <method>` keys.
       var m = key.match(/^(\S+)\s*(.*)$/);
       Radio.channel(m[1]).on(m[2], self[map], self);
     }
