@@ -43,11 +43,26 @@ Controller.prototype._tune = function() {
   var self = this;
 
   // EVENTS
-  _.each(this.events, function(map, name) {
-    var channel = Radio.channel(name);
-    _.each(map, function(method, event) {
-      channel.on(event, self[method], self);
-    });
+  _.each(this.events, function(map, key) {
+
+    // Nested object style.
+    if (_.isObject(map)) {
+
+      var channel = Radio.channel(key);
+
+      // Bind all pairs in the object.
+      _.each(map, function(method, event) {
+        channel.on(event, self[method], self);
+      });
+
+    }
+
+    // Backbone event style.
+    else if (_.isString(map)) {
+      var m = key.match(/^(\S+)\s*(.*)$/);
+      Radio.channel(m[1]).on(m[2], self[map], self);
+    }
+
   });
 
   if (_.isObject(this.commands) ||
