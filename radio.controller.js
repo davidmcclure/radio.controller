@@ -26,7 +26,8 @@ var Controller = function(options) {
     this.initialize(this.options);
   }
 
-  this._tune();
+  this._bindEvents();
+  this._bindCommandsAndRequests();
 
 };
 
@@ -36,9 +37,9 @@ Controller.extend = Backbone.Model.extend;
 
 
 /**
- * Create radio channels, bind callbacks.
+ * Bind event mappings.
  */
-Controller.prototype._tune = function() {
+Controller.prototype._bindEvents = function() {
 
   var self = this;
 
@@ -64,6 +65,16 @@ Controller.prototype._tune = function() {
     }
 
   });
+
+};
+
+
+/**
+ * Bind event mappings.
+ */
+Controller.prototype._bindCommandsAndRequests = function() {
+
+  var self = this;
 
   if (_.isObject(this.commands) ||
       _.isObject(this.requests)) {
