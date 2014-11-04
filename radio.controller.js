@@ -43,7 +43,6 @@ Controller.prototype._bindEvents = function() {
 
   var self = this;
 
-  // EVENTS
   _.each(this.events, function(map, key) {
 
     // Nested object style.
@@ -70,7 +69,7 @@ Controller.prototype._bindEvents = function() {
 
 
 /**
- * Bind event mappings.
+ * Bind command and request mappings to the local channel.
  */
 Controller.prototype._bindCommandsAndRequests = function() {
 
