@@ -115,3 +115,7 @@ var mapChannel = Radio.channel('map');
 mapChannel.command('command1'); // Calls Map.command1();
 mapChannel.request('request2'); // Calls Map.request2();
 ```
+
+## Bugs/Ideas/PRs
+
+File an issue here, or hit me up on Twitter (@clured). I'll merge PRs that aren't crazy and have tests.
