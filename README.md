@@ -118,4 +118,4 @@ mapChannel.request('request2'); // Calls Map.request2();
 
 ## Bugs/Ideas/PRs
 
-File an issue here, or hit me up on Twitter (@clured). I'll merge PRs that aren't crazy and have tests.
+File an issue here, or hit me up on Twitter ([@clured](https://twitter.com/clured)). I'll merge PRs that aren't crazy and have tests.
