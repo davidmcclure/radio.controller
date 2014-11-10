@@ -44,14 +44,12 @@ var Ctl = Controller.extend({
 });
 ```
 
-And, then, triggering the bound events will fire the callbacks. So, this:
+And, then, triggering the bound events will fire the callbacks.
 
 ```javascript
 var channel1 = Radio.channel('channel1');
-channel1.trigger('event1');
+channel1.trigger('event1'); // Calls Ctl.event1();
 ```
-
-... will call `Ctl.event1()`.
 
 Sometimes, you want to subscribe _lots_ of events on the same channel, and it gets annoying to duplicate the event name over and over again in the key names. If you want, you can use an alternate syntax that lets you nest a bunch of event-callback pairs under a single key that identifies the channel. So, this is equivalent:
 
