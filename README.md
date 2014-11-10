@@ -22,7 +22,9 @@ Radio.Controller works sort of like the `events` object on a regular Backbone vi
 
 ### Events
 
-A controller can bind to events on multiple channels. Use the same syntax you'd use to bind UI events to view methods, except, use the format `<channel> <event>` instead of `<event> <selection>`. Like so:
+A controller can bind to events on multiple channels. Use the same syntax you'd use to bind regular UI events to callbacks in a Backbone view:
+
+**Style 1: Backbone-view-esque:**
 
 ```javascript
 var Ctl = Controller.extend({
@@ -52,6 +54,8 @@ channel1.trigger('event1');
 ... will call `Ctl.event1()`.
 
 Sometimes, you want to subscribe _lots_ of events on the same channel, and it gets annoying to duplicate the event name over and over again in the key names. If you want, you can use an alternate syntax that lets you nest a bunch of event-callback pairs under a single key that identifies the channel. So, this is equivalent:
+
+**Style 2: Nested objects:**
 
 ```javascript
 var Ctl = Controller.extend({
