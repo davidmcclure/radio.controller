@@ -4,7 +4,7 @@ An itty-bitty, ~100-line controller component for [Backbone.radio](https://githu
 
 ## Installation
 
-Install with npm:
+Install with [npm](https://www.npmjs.org):
 
 ```bash
 npm install radio.controller --save
