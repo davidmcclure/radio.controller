@@ -47,4 +47,6 @@ describe('Requests', function() {
 
   });
 
+  it('should throw error when no channel is provided');
+
 });

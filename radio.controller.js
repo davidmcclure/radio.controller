@@ -63,6 +63,7 @@ Controller.prototype._bindEvents = function() {
       // Match `<channel> <method>` keys.
       var m = key.match(/^(\S+)\s*(.*)$/);
       Radio.channel(m[1]).on(m[2], self[map], self);
+
     }
 
   });
