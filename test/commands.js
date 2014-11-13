@@ -46,6 +46,4 @@ describe('Commands', function() {
 
   });
 
-  it('should throw error when no channel is provided');
-
 });
