@@ -1,6 +1,6 @@
 # Radio.Controller
 
-An itty-bitty, ~100-line controller component for [Backbone.radio](https://github.com/marionettejs/backbone.Radio), a delightful little library that breaks out the messaging patterns from [Backbone.Marionette](http://marionettejs.com).
+An itty-bitty, super-simple, low-drama controller component for [Backbone.radio](https://github.com/marionettejs/backbone.Radio).
 
 ## Installation
 
@@ -18,11 +18,11 @@ var Controller = require('backbone.radio');
 
 ## Usage
 
-Radio.Controller works sort of like the `events` object on a regular Backbone view, which maps UI events to callbacks on the view - except, on a controller, the events can be any event, command, or request published via Backbone.Radio.
+The word "controller" has been used to describe lots of different patterns in front-end architecture in the last couple years, to the point that it doesn't really do very much work anymore. Here, it's just a simple component that automatically binds events, commands, and requests pubished with Backbone.Radio onto callbacks. A controller could be used in lots of different ways. I like to think of it as a component that _manges the lifecycle of a view_ - it instantiates it when the application starts, feeds it with data and triggers state changes, and tears it down when it's not needed anymore. But, there are lots of ways to skin a cat.
 
 ### Events
 
-A controller can bind to events on multiple channels. Use the same syntax you'd use to bind regular UI events to callbacks in a Backbone view:
+A controller can bind to events on multiple channels. Use the same syntax you'd use to bind UI events to callbacks in a Backbone view:
 
 **Style 1: Like Backbone views**
 
@@ -116,4 +116,4 @@ mapChannel.request('request2'); // Calls Map.request2();
 
 ## Bugs/Ideas/PRs
 
-File an issue here, or hit me up on Twitter ([@clured](https://twitter.com/clured)). I'll merge PRs that aren't crazy and have tests.
+File an issue here, or hit me up on Twitter ([@clured](https://twitter.com/clured)).
