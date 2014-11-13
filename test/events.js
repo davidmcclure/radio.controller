@@ -9,7 +9,7 @@ var expect = chai.expect;
 
 describe('Events', function() {
 
-  var Ctl, spy1, spy2, spy3, spy4;
+  var spy1, spy2, spy3, spy4;
 
   beforeEach(function() {
     spy1 = sinon.spy();
@@ -20,7 +20,7 @@ describe('Events', function() {
 
   it('should bind nested-object mappings', function() {
 
-    Ctl = Controller.extend({
+    var Ctl = Controller.extend({
 
       events: {
         ch1: {
@@ -63,7 +63,7 @@ describe('Events', function() {
 
   it('should bind `<channel> <method>` key mappings', function() {
 
-    Ctl = Controller.extend({
+    var Ctl = Controller.extend({
 
       events: {
         'ch1 evt1': 'evt1',

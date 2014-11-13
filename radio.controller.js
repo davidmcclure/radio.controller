@@ -21,7 +21,6 @@ var Controller = function(options) {
 
   this.options = options || {};
 
-  // Call userland initializer.
   if (_.isFunction(this.initialize)) {
     this.initialize(this.options);
   }

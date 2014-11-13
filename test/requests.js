@@ -9,7 +9,7 @@ var expect = chai.expect;
 
 describe('Requests', function() {
 
-  var Ctl, spy1, spy2;
+  var spy1, spy2;
 
   beforeEach(function() {
     spy1 = sinon.stub().returns(10);
@@ -18,7 +18,7 @@ describe('Requests', function() {
 
   it('should bind requests to callbacks', function() {
 
-    Ctl = Controller.extend({
+    var Ctl = Controller.extend({
 
       channel: 'ch1',
 
